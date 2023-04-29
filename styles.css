@@ -297,15 +297,24 @@ input[type="checkbox"]:checked::before {
     width: 43%;
 }
 
-/* ----------Footer---------- */
-.gameFooter {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: #302b2acc;
-    padding: 15px;
-    color: white;
-    font-size: 12px;
-    text-align: center;
+@media screen and (max-width: 400px) {
+    .card label {
+        font-size: 13px;
+    }
+
+    .card input[type="text"] {
+        font-size: 15px;
+    }
+
+    .card input[type="text"]:disabled {
+        font-size: 15px;
+    }
+
+    .card input[type="date"] {
+        font-size: 14px;
+    }
+
+    .card input[type="date"]:disabled {
+        font-size: 14px;
+    }
 }

@@ -23,11 +23,12 @@
             <form name="addNewGame" action="" method="get" id="addNewGameForm">
                 <div class="addTitle">
                     <label for="title" class="formLabel">Title<span class="formAsterisk">*</span></label>
-                    <input type="text" name="title" id="title" placeholder="e.g. Kingdom Hearts II" required>
+                    <input type="text" name="title" id="title" placeholder="e.g. Kingdom Hearts II" maxlength="20"
+                        required>
                 </div>
                 <div class="addPlatform">
                     <label for="platform" class="formLabel">Platform<span class="formAsterisk">*</span></label>
-                    <input type="text" name="platform" id="platform" placeholder="e.g. PS2" required>
+                    <input type="text" name="platform" id="platform" placeholder="e.g. PS2" maxlength="15" required>
                 </div>
                 <div class="addHours">
                     <label for="hours" class="formLabel">Played Hours<span class="formAsterisk">*</span></label>
@@ -46,9 +47,6 @@
         </div>
     </div>
     <div class="gameList"></div>
-    <footer class="gameFooter">
-        <span>All rights reserved - Amanda Yumi Nagao 2023</span>
-    </footer>
 </body>
 
 </html>
