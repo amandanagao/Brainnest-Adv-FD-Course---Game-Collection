@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Collection</title>
+
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <h1>My Game Collection</h1>
+        <button type="submit" onClick="togglePopUp()" id="addNewGameButton">Add New Game</button>
+    </header>
+    <div class="popup" id="formPopUp">
+        <div class="overlay"></div>
+        <div class="content">
+            <div class="close-btn" onClick="togglePopUp()">&times;</div>
+            <form name="addNewGame" action="" method="get" id="addNewGameForm">
+                <div class="addTitle">
+                    <label for="title" class="formLabel">Title<span class="formAsterisk">*</span></label>
+                    <input type="text" name="title" id="title" placeholder="e.g. Kingdom Hearts II" required>
+                </div>
+                <div class="addPlatform">
+                    <label for="platform" class="formLabel">Platform<span class="formAsterisk">*</span></label>
+                    <input type="text" name="platform" id="platform" placeholder="e.g. PS2" required>
+                </div>
+                <div class="addHours">
+                    <label for="hours" class="formLabel">Played Hours<span class="formAsterisk">*</span></label>
+                    <input type="number" name="hours" id="hours" min="1" placeholder="e.g. 65" required>
+                </div>
+                <div class="startDate">
+                    <label for="startDate" class="formLabel">Start Date<span class="formAsterisk">*</span></label>
+                    <input type="date" name="startDate" id="startDate" max="setTodayDate()" required>
+                </div>
+                <div class="checkStatus">
+                    <input type="checkbox" name="status" id="status">
+                    <label for="status">I have finished this Game!</label>
+                </div>
+                <button type="submit" name="submitButton" class="submitButton" id="submitButton">Add Game</button>
+            </form>
+        </div>
+    </div>
+    <div class="gameList"></div>
+    <footer class="gameFooter">
+        <span>All rights reserved - Amanda Yumi Nagao 2023</span>
+    </footer>
+</body>
+
+</html>

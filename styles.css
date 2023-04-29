@@ -1,0 +1,311 @@
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Montserrat+Alternates&family=Press+Start+2P&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Press Start 2P', cursive;
+    background-image: url(gameboy-background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+}
+
+/* ----------Header---------- */
+header {
+    display: grid;
+    justify-content: center;
+    background: linear-gradient(90deg, rgb(174, 9, 59) 0%, rgb(210, 34, 92) 97%);
+    padding: 1em;
+}
+
+h1 {
+    color: #FFFFFF;
+    text-shadow: 5px 5px 5px rgba(0,0,0,0.6);
+    font-size: 30px;
+    justify-self: center;
+}
+
+#addNewGameButton {
+    font-family: 'Audiowide', cursive;
+    width: 60%;
+    justify-self: center;
+    padding: 5px;
+    font-size: 20px;
+    background-color: #FFFFFF;
+    color: #AE093B;
+    border: 1px solid #AE093B;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.3);
+    transition: all 150ms ease-in-out;
+}
+
+#addNewGameButton:hover {
+    cursor: pointer;
+    background-color: #AE093B;
+    color: #FFFFFF;
+    border: 1px solid #AE093B;
+}
+
+/* ----------Form---------- */
+#addNewGameForm {
+    font-size: 16px;
+    display: grid;
+    gap: 25px;
+}
+
+#title,
+#platform,
+#hours,
+#startDate {
+    font-family: 'Audiowide', cursive;
+    border-radius: 20px;
+    padding: 7px;
+    font-size: 16px;
+    color: #757575;
+    text-align: center;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.formAsterisk {
+    color: #d2225c;
+}
+
+.checkStatus {
+    display: flex;
+    align-items: center;
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    background-color: #fff;
+    font: inherit;
+    width: 1em;
+    height: 1em;
+    border: 1px solid #000000;
+    border-radius: 0.15em;
+    display: grid;
+    place-content: center;
+}
+
+input[type="checkbox"]::before {
+    content: '';
+    width: 0.7em;
+    height: 0.7em;
+    transform: scale(0);
+    transition: 100ms transform ease-in-out;
+    background-color: #d2225c;
+    transform-origin: bottom left;
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+
+input[type="checkbox"]:checked::before {
+    transform: scale(1);
+}
+
+.submitButton {
+    font-family: 'Audiowide', cursive;
+    width: 60%;
+    justify-self: center;
+    padding: 10px;
+    font-size: 20px;
+    background-color: #d2225c;
+    color: #FFFFFF;
+    border: 1px solid #d2225c;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.3);
+    transition: all 150ms ease-in-out;
+}
+
+.submitButton:hover {
+    cursor: pointer;
+    background-color: #FFFFFF;
+    color: #d2225c;
+    border: 1px solid #d2225c;
+}
+
+/* ----------Pop Up---------- */
+.popup .overlay {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    background:rgba(0,0,0,0.7);
+    z-index: 1;
+    display: none;
+}
+
+.popup .content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%) scale(0);
+    width: fit-content;
+    height: auto;
+    z-index: 2;
+    padding: 25px;
+    border-radius: 10px;
+    background: #29292c;
+    color: #FFFFFF;
+    transition: all 300ms ease-in-out;
+}
+
+.popup .close-btn {
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 30px;
+    height: 30px;
+    background: #d2225c;
+    color:#FFFFFF;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 50%;
+}
+
+.popup .close-btn:hover {
+    background-color: #FFFFFF;
+    color: #d2225c;
+    border: 1px solid #d2225c;
+}
+
+.popup.active .overlay {
+    display: block;
+}
+
+.popup.active .content {
+    transition: all 300ms ease-in-out;
+    transform: translate(-50%,-50%) scale(1);
+}
+
+.hidden {
+    display: none;
+}
+
+/* ----------Game Display---------- */
+.gameList {
+    margin: 15px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 400px));
+    justify-items: stretch;
+    justify-content: center;
+    align-content: center;
+    gap: 1em;
+}
+
+.card {
+    padding: 1em;
+    color: #FFFFFF;
+    background: linear-gradient(180deg, rgb(85, 77, 83) 0%, rgb(41, 41, 44) 97%);
+    border: 1px solid #FFFFFF;
+    border-radius: 5px;
+    box-shadow: 10px 5px 10px rgba(0,0,0,0.6);
+    line-height: 1.5;
+}
+
+.card label {
+    text-shadow: 5px 5px 5px rgba(0,0,0,0.6);
+    font-size: 16px;
+}
+
+.card input[type="text"] {
+    font-family: 'Audiowide', cursive;
+    border-radius: 20px;
+    padding: 5px;
+    margin-bottom: 8px;
+    width: 100%;
+    text-align: center;
+    font-size: 17px;
+}
+
+.card input[type="text"]:disabled {
+    outline: none;
+    border: none;
+    color: white;
+    font-size: 18px;
+    background: transparent;
+    text-align: start;
+}
+
+.card input[type="date"] {
+    font-family: 'Audiowide', cursive;
+    border-radius: 20px;
+    padding: 5px;
+    margin-bottom: 8px;
+    width: 100%;
+    text-align: center;
+}
+
+.card input[type="date"]:disabled {
+    outline: none;
+    border: none;
+    color: white;
+    font-size: 18px;
+    background: transparent;
+    text-align: start;
+    width: 51%;
+}
+
+.card button {
+    font-family: 'Audiowide', cursive;
+    font-size: 16px;
+    color: #FFFFFF;
+    background-color: #29292c;
+    border: 1px solid #FFFFFF;
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+    padding: 3px 15px;
+    margin-right: 7px;
+    transition: all 150ms ease-in-out;
+}
+
+.card button:hover {
+    cursor: pointer;
+    color: #29292c;
+    background-color: #FFFFFF;
+    border: 1px solid #FFFFFF;
+}
+
+.card .cardButtons {
+    text-align: end;
+    margin: 10px 0;
+}
+
+.gameDiv,
+.platformDiv {
+    display: flex;
+    align-items: baseline;
+}
+
+.statusDiv {
+    display: flex;
+    align-items: center;
+}
+
+.hoursDiv #gameHours {
+    width: 43%;
+}
+
+/* ----------Footer---------- */
+.gameFooter {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #302b2acc;
+    padding: 15px;
+    color: white;
+    font-size: 12px;
+    text-align: center;
+}
