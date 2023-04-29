@@ -143,7 +143,7 @@ function addGameToCollection() {
         errorCheck(newGame._id);
         showGames();
         addNewGameForm.reset();
-        document.getElementById("formPopUp").classList.remove("active");
+        document.getElementById('formPopUp').classList.remove('active');
     });
 }
 
@@ -169,10 +169,10 @@ function showGames() {
             gameDiv.classList.add('gameDiv');
             let gameDivLabel = document.createElement('label');
             gameDivLabel.textContent = 'Game:';
-            let gameDivText = document.createElement("input");
-            gameDivText.setAttribute("type", "text");
-            gameDivText.setAttribute("id", "gameTitle");
-            gameDivText.setAttribute("disabled", '');
+            let gameDivText = document.createElement('input');
+            gameDivText.setAttribute('type', 'text');
+            gameDivText.setAttribute('id', 'gameTitle');
+            gameDivText.setAttribute('disabled', '');
             gameDivText.value = `${value.title}`;
             let gameDivHidden = document.createElement('input');
             gameDivHidden.setAttribute('type', 'hidden');
@@ -188,15 +188,15 @@ function showGames() {
             let platformDiv = document.createElement('div');
             platformDiv.classList.add('platformDiv');
             let platformDivLabel = document.createElement('label');
-            platformDivLabel.textContent = 'platform:';
-            let platformDivText = document.createElement("input");
-            platformDivText.setAttribute("type", "text");
-            platformDivText.setAttribute("id", "gameplatform");
-            platformDivText.setAttribute("disabled", '');
+            platformDivLabel.textContent = 'Platform:';
+            let platformDivText = document.createElement('input');
+            platformDivText.setAttribute('type', 'text');
+            platformDivText.setAttribute('id', 'gamePlatform');
+            platformDivText.setAttribute('disabled', '');
             platformDivText.value = `${value.platform}`;
             let platformDivHidden = document.createElement('input');
             platformDivHidden.setAttribute('type', 'hidden');
-            platformDivHidden.setAttribute('id', 'originalplatform');
+            platformDivHidden.setAttribute('id', 'originalPlatform');
             platformDivHidden.value = `${value.platform}`;
 
             cardDiv.appendChild(platformDiv);
@@ -209,10 +209,10 @@ function showGames() {
             hoursDiv.classList.add('hoursDiv');
             let hoursDivLabel = document.createElement('label');
             hoursDivLabel.textContent = 'Played hours:';
-            let hoursDivText = document.createElement("input");
-            hoursDivText.setAttribute("type", "text");
-            hoursDivText.setAttribute("id", "gameHours");
-            hoursDivText.setAttribute("disabled", '');
+            let hoursDivText = document.createElement('input');
+            hoursDivText.setAttribute('type', 'text');
+            hoursDivText.setAttribute('id', 'gameHours');
+            hoursDivText.setAttribute('disabled', '');
             hoursDivText.value = `${value.hours}`;
             let hoursDivHidden = document.createElement('input');
             hoursDivHidden.setAttribute('type', 'hidden');
@@ -229,10 +229,10 @@ function showGames() {
             statusDiv.classList.add('statusDiv');
             let statusDivLabel = document.createElement('label');
             statusDivLabel.textContent = 'Game finished';
-            let statusDivText = document.createElement("input");
-            statusDivText.setAttribute("type", "checkbox");
-            statusDivText.setAttribute("id", "gameStatus");
-            statusDivText.setAttribute("disabled", '');
+            let statusDivText = document.createElement('input');
+            statusDivText.setAttribute('type', 'checkbox');
+            statusDivText.setAttribute('id', 'gameStatus');
+            statusDivText.setAttribute('disabled', '');
             statusDivText.checked = value.status;
             let statusDivHidden = document.createElement('input');
             statusDivHidden.setAttribute('type', 'hidden');
@@ -249,10 +249,10 @@ function showGames() {
             dateDiv.classList.add('dateDiv');
             let dateDivLabel = document.createElement('label');
             dateDivLabel.textContent = 'Start date:';
-            let dateDivText = document.createElement("input");
-            dateDivText.setAttribute("type", "date");
-            dateDivText.setAttribute("id", "gameDate");
-            dateDivText.setAttribute("disabled", '');
+            let dateDivText = document.createElement('input');
+            dateDivText.setAttribute('type', 'date');
+            dateDivText.setAttribute('id', 'gameDate');
+            dateDivText.setAttribute('disabled', '');
             dateDivText.value = `${value.startDate}`;
             let dateDivHidden = document.createElement('input');
             dateDivHidden.setAttribute('type', 'hidden');
@@ -405,7 +405,7 @@ function setCancelButton(id) {
 }
 
 function togglePopUp() {
-    document.getElementById("formPopUp").classList.toggle("active");
+    document.getElementById('formPopUp').classList.toggle('active');
 }
 
 addGameToCollection();
