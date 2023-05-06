@@ -158,7 +158,7 @@ input[type="checkbox"]:checked::before {
     transition: all 300ms ease-in-out;
 }
 
-.popup .close-btn {
+.popup .closeButton {
     cursor: pointer;
     position: absolute;
     right: 10px;
@@ -174,7 +174,7 @@ input[type="checkbox"]:checked::before {
     border-radius: 50%;
 }
 
-.popup .close-btn:hover {
+.popup .closeButton:hover {
     background-color: #FFFFFF;
     color: #d2225c;
     border: 1px solid #d2225c;
@@ -219,7 +219,8 @@ input[type="checkbox"]:checked::before {
     font-size: 16px;
 }
 
-.card input[type="text"] {
+.card input[type="text"],
+.card input[type="number"] {
     font-family: 'Audiowide', cursive;
     border-radius: 20px;
     padding: 5px;
@@ -229,7 +230,8 @@ input[type="checkbox"]:checked::before {
     font-size: 17px;
 }
 
-.card input[type="text"]:disabled {
+.card input[type="text"]:disabled,
+.card input[type="number"]:disabled {
     outline: none;
     border: none;
     color: white;
@@ -297,16 +299,19 @@ input[type="checkbox"]:checked::before {
     width: 43%;
 }
 
+/* ----------Responsive---------- */
 @media screen and (max-width: 400px) {
     .card label {
         font-size: 13px;
     }
 
-    .card input[type="text"] {
+    .card input[type="text"],
+    .card input[type="number"] {
         font-size: 15px;
     }
 
-    .card input[type="text"]:disabled {
+    .card input[type="text"]:disabled,
+    .card input[type="number"]:disabled {
         font-size: 15px;
     }
 

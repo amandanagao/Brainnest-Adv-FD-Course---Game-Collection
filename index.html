@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game Collection</title>
 
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="./styles.css">
+    <script src="./script.js" defer></script>
 </head>
 
 <body>
@@ -19,7 +19,7 @@
     <div class="popup" id="formPopUp">
         <div class="overlay"></div>
         <div class="content">
-            <div class="close-btn" onClick="togglePopUp()">&times;</div>
+            <div class="closeButton" onClick="togglePopUp()">&times;</div>
             <form name="addNewGame" action="" method="get" id="addNewGameForm">
                 <div class="addTitle">
                     <label for="title" class="formLabel">Title<span class="formAsterisk">*</span></label>
@@ -28,7 +28,7 @@
                 </div>
                 <div class="addPlatform">
                     <label for="platform" class="formLabel">Platform<span class="formAsterisk">*</span></label>
-                    <input type="text" name="platform" id="platform" placeholder="e.g. PS2" maxlength="15" required>
+                    <input type="text" name="platform" id="platform" placeholder="e.g. PS2" maxlength="20" required>
                 </div>
                 <div class="addHours">
                     <label for="hours" class="formLabel">Played Hours<span class="formAsterisk">*</span></label>

@@ -1,5 +1,6 @@
-let RegEx  = /^[A-Za-z0-9\s\']*$/;
-let error = 0;
+let regEx    = /^[A-Za-z0-9\s\']*$/;
+let numRegEx = /^\d+$/;
+let error    = 0;
 
 let gameCollection = [];
 
@@ -7,11 +8,11 @@ class Game {
 
     constructor(title, platform, hours, status, startDate) {
         this.id        = this.createUUID();
-        this.title     = title;
-        this.platform = platform;
-        this.hours     = hours;
-        this.status    = status;
-        this.startDate = startDate;
+        this.title     = this.validateTitle(title);
+        this.platform  = this.validatePlatform(platform);
+        this.hours     = this.validateHours(hours);
+        this.status    = this.validateStatus(status);
+        this.startDate = this.validateStartDate(startDate);
     }
 
     //Getters and Setters
@@ -44,56 +45,23 @@ class Game {
     }
 
     set title(title) {
-        if (title.match(RegEx)) {
-            this._title = this.capitalizeLetter(title);
-        } else {
-            alert('Please provide a correct title');
-            error = 1;
-            return;
-        }
+        this._title = title;
     }
 
     set platform(platform) {
-        if (platform.match(RegEx)) {
-            this._platform = this.capitalizeLetter(platform);
-        } else {
-            alert('Please provide a correct platform');
-            error = 1;
-            return;
-        }
+        this._platform = platform;
     }
 
     set hours(hours) {
-        if (hours > 0) {
-            this._hours = hours;
-        } else {
-            alert('Please enter a valid played hours');
-            error = 1;
-            return;
-        }
+        this._hours = hours;
     }
 
     set status(status) {
-        if(status) {
-            this._status = true;
-        } else {
-            this._status = false;
-        }
+        this._status = status;
     }
 
     set startDate(startDate) {
-        const today = new Date();
-        const date = ('0' + today.getDate()).slice(-2);
-        const month = ('0' + (today.getMonth() + 1)).slice(-2);
-        const year = today.getFullYear();
-        let todayDate = `${year}-${month}-${date}`;
-        if(startDate <= todayDate) {
-            this._startDate = startDate;
-        } else {
-            alert('Please enter a valid date');
-            error = 1;
-            return;
-        }
+        this._startDate = startDate;
     }
 
     //Class Functions
@@ -114,6 +82,60 @@ class Game {
         }
         return arr.join(' ');
     }
+
+    //Class Functions - Validation
+    validateTitle(title) {
+        if (title.trim().match(regEx) && title.trim() !== '') {
+            return (this.capitalizeLetter(title)).trim();
+        } else {
+            alert('Please provide a correct title!');
+            error = 1;
+            return;
+        }
+    }
+
+    validatePlatform(platform) {
+        if (platform.trim().match(regEx) && platform.trim() !== '') {
+            return (this.capitalizeLetter(platform)).trim();
+        } else {
+            alert('Please provide a correct platform!');
+            error = 1;
+            return;
+        }
+    }
+
+    validateHours(hours) {
+        if (hours > 0 && hours.match(numRegEx)) {
+            return hours;
+        } else {
+            alert('Please enter a valid played hours!');
+            error = 1;
+            return;
+        }
+    }
+
+    validateStatus(status) {
+        if(status) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    validateStartDate(startDate) {
+        const today = new Date();
+        const date = ('0' + today.getDate()).slice(-2);
+        const month = ('0' + (today.getMonth() + 1)).slice(-2);
+        const year = today.getFullYear();
+        let todayDate = `${year}-${month}-${date}`;
+        if(startDate <= todayDate) {
+            return startDate;
+        } else {
+            alert('Please enter a valid date!');
+            error = 1;
+            return;
+        }
+    }
 }
 
 function addGameToCollection() {
@@ -130,7 +152,7 @@ function addGameToCollection() {
        //Check duplicate game
        Object.entries(gameCollection).forEach(([key, game]) => {
             if (    
-                game.capitalizeLetter(title.value)     === game.title &&
+                game.capitalizeLetter(title.value)    === game.title &&
                 game.capitalizeLetter(platform.value) === game.platform
             ) {
                 alert('This game has been previously added.');
@@ -138,7 +160,7 @@ function addGameToCollection() {
             }
         });
         
-        let newGame   = new Game(title.value, platform.value, hours.value, status.checked, startDate.value);
+        let newGame = new Game(title.value, platform.value, hours.value, status.checked, startDate.value);
         gameCollection[newGame._id] = newGame;
         errorCheck(newGame._id);
         showGames();
@@ -154,6 +176,7 @@ function errorCheck(id) {
     }
 }
 
+//Create game card
 function showGames() {
     if(error === 0) {
         let item  = document.querySelector('.gameList');
@@ -210,7 +233,7 @@ function showGames() {
             let hoursDivLabel = document.createElement('label');
             hoursDivLabel.textContent = 'Played hours:';
             let hoursDivText = document.createElement('input');
-            hoursDivText.setAttribute('type', 'text');
+            hoursDivText.setAttribute('type', 'number');
             hoursDivText.setAttribute('id', 'gameHours');
             hoursDivText.setAttribute('disabled', '');
             hoursDivText.value = `${value.hours}`;
@@ -301,6 +324,7 @@ function showGames() {
     }
 }
 
+//Buttons Functions
 function setEditButton(id) {
     let game = document.getElementById(id);
     let fields = game.querySelectorAll('[disabled]');
@@ -338,39 +362,47 @@ function setSaveButton(id) {
     let status = game.querySelector('#gameStatus');
     let date = game.querySelector('#gameDate');
 
-    gameCollection[id].title = title.value;
-    gameCollection[id].platform = platform.value;
-    gameCollection[id].hours = hours.value;
-    gameCollection[id].status = status.checked;
-    gameCollection[id].date = date.value;
-
-    let hiddenTitle = game.querySelector('#originalTitle');
-    let hiddenPlatform = game.querySelector('#originalPlatform');
-    let hiddenHours = game.querySelector('#originalHours');
-    let hiddenStatus = game.querySelector('#originalStatus');
-    let hiddenDate = game.querySelector('#originalDate');
+    let currentGame = gameCollection[id];
     
-    hiddenTitle.value = title.value;
-    hiddenPlatform.value = platform.value;
-    hiddenHours.value = hours.value;
-    hiddenStatus.checked = status.checked;
-    hiddenDate.value = date.value;
+    gameCollection[id].title = currentGame.validateTitle(title.value);
+    gameCollection[id].platform = currentGame.validatePlatform(platform.value);
+    gameCollection[id].hours = currentGame.validateHours(hours.value);
+    gameCollection[id].status = currentGame.validateStatus(status.checked);
+    gameCollection[id].date = currentGame.validateStartDate(date.value);
 
-    title.setAttribute('disabled','');
-    platform.setAttribute('disabled','');
-    hours.setAttribute('disabled','');
-    status.setAttribute('disabled','');
-    date.setAttribute('disabled','');
+    if(error !== 1) {
+        let hiddenTitle = game.querySelector('#originalTitle');
+        let hiddenPlatform = game.querySelector('#originalPlatform');
+        let hiddenHours = game.querySelector('#originalHours');
+        let hiddenStatus = game.querySelector('#originalStatus');
+        let hiddenDate = game.querySelector('#originalDate');
+        
+        hiddenTitle.value = title.value;
+        hiddenPlatform.value = platform.value;
+        hiddenHours.value = hours.value;
+        hiddenStatus.checked = status.checked;
+        hiddenDate.value = date.value;
 
-    let editButton = game.querySelector('#editButton');
-    let deleteButton = game.querySelector('#deleteButton');
-    let saveButton = game.querySelector('#saveButton');
-    let cancelButton = game.querySelector('#cancelButton');
+        title.value = gameCollection[id].title.trim();
+        platform.value = gameCollection[id].platform.trim();
 
-    editButton.classList.remove('hidden');
-    deleteButton.classList.remove('hidden');
-    saveButton.classList.add('hidden');
-    cancelButton.classList.add('hidden');
+        title.setAttribute('disabled','');
+        platform.setAttribute('disabled','');
+        hours.setAttribute('disabled','');
+        status.setAttribute('disabled','');
+        date.setAttribute('disabled','');
+
+        let editButton = game.querySelector('#editButton');
+        let deleteButton = game.querySelector('#deleteButton');
+        let saveButton = game.querySelector('#saveButton');
+        let cancelButton = game.querySelector('#cancelButton');
+
+        editButton.classList.remove('hidden');
+        deleteButton.classList.remove('hidden');
+        saveButton.classList.add('hidden');
+        cancelButton.classList.add('hidden');
+    }
+    error = 0;
 }
 
 function setCancelButton(id) {
@@ -404,6 +436,7 @@ function setCancelButton(id) {
     cancelButton.classList.add('hidden');
 }
 
+//PopUp Function
 function togglePopUp() {
     document.getElementById('formPopUp').classList.toggle('active');
 }
