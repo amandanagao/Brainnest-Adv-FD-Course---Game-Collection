@@ -144,7 +144,7 @@ function addGameToCollection() {
     addNewGameForm.addEventListener('submit', (event) => {
         event.preventDefault();
         let title     = document.querySelector('#title');
-        let platform = document.querySelector('#platform');
+        let platform  = document.querySelector('#platform');
         let hours     = document.querySelector('#hours');
         let status    = document.querySelector('#status');
         let startDate = document.querySelector('#startDate');
@@ -326,16 +326,16 @@ function showGames() {
 
 //Buttons Functions
 function setEditButton(id) {
-    let game = document.getElementById(id);
+    let game   = document.getElementById(id);
     let fields = game.querySelectorAll('[disabled]');
    
     fields.forEach(element => {
         element.removeAttribute('disabled');
     });
 
-    let editButton = game.querySelector('#editButton');
+    let editButton   = game.querySelector('#editButton');
     let deleteButton = game.querySelector('#deleteButton');
-    let saveButton = game.querySelector('#saveButton');
+    let saveButton   = game.querySelector('#saveButton');
     let cancelButton = game.querySelector('#cancelButton');
 
     editButton.classList.add('hidden');
@@ -355,12 +355,12 @@ function setDeleteButton(id) {
 }
 
 function setSaveButton(id) {
-    let game = document.getElementById(id);
-    let title = game.querySelector('#gameTitle');
+    let game     = document.getElementById(id);
+    let title    = game.querySelector('#gameTitle');
     let platform = game.querySelector('#gamePlatform');
-    let hours = game.querySelector('#gameHours');
-    let status = game.querySelector('#gameStatus');
-    let date = game.querySelector('#gameDate');
+    let hours    = game.querySelector('#gameHours');
+    let status   = game.querySelector('#gameStatus');
+    let date     = game.querySelector('#gameDate');
 
     let currentGame = gameCollection[id];
     
@@ -371,19 +371,19 @@ function setSaveButton(id) {
     gameCollection[id].date = currentGame.validateStartDate(date.value);
 
     if(error !== 1) {
-        let hiddenTitle = game.querySelector('#originalTitle');
+        let hiddenTitle    = game.querySelector('#originalTitle');
         let hiddenPlatform = game.querySelector('#originalPlatform');
-        let hiddenHours = game.querySelector('#originalHours');
-        let hiddenStatus = game.querySelector('#originalStatus');
-        let hiddenDate = game.querySelector('#originalDate');
+        let hiddenHours    = game.querySelector('#originalHours');
+        let hiddenStatus   = game.querySelector('#originalStatus');
+        let hiddenDate     = game.querySelector('#originalDate');
         
-        hiddenTitle.value = title.value;
+        hiddenTitle.value    = title.value;
         hiddenPlatform.value = platform.value;
-        hiddenHours.value = hours.value;
+        hiddenHours.value    = hours.value;
         hiddenStatus.checked = status.checked;
-        hiddenDate.value = date.value;
+        hiddenDate.value     = date.value;
 
-        title.value = gameCollection[id].title.trim();
+        title.value    = gameCollection[id].title.trim();
         platform.value = gameCollection[id].platform.trim();
 
         title.setAttribute('disabled','');
@@ -392,9 +392,9 @@ function setSaveButton(id) {
         status.setAttribute('disabled','');
         date.setAttribute('disabled','');
 
-        let editButton = game.querySelector('#editButton');
+        let editButton   = game.querySelector('#editButton');
         let deleteButton = game.querySelector('#deleteButton');
-        let saveButton = game.querySelector('#saveButton');
+        let saveButton   = game.querySelector('#saveButton');
         let cancelButton = game.querySelector('#cancelButton');
 
         editButton.classList.remove('hidden');
@@ -406,18 +406,18 @@ function setSaveButton(id) {
 }
 
 function setCancelButton(id) {
-    let game = document.getElementById(id);
-    let title = game.querySelector('#gameTitle');
+    let game     = document.getElementById(id);
+    let title    = game.querySelector('#gameTitle');
     let platform = game.querySelector('#gamePlatform');
-    let hours = game.querySelector('#gameHours');
-    let status = game.querySelector('#gameStatus');
-    let date = game.querySelector('#gameDate');
+    let hours    = game.querySelector('#gameHours');
+    let status   = game.querySelector('#gameStatus');
+    let date     = game.querySelector('#gameDate');
 
-    title.value = game.querySelector('#originalTitle').value;
+    title.value    = game.querySelector('#originalTitle').value;
     platform.value = game.querySelector('#originalPlatform').value;
-    hours.value = game.querySelector('#originalHours').value;
+    hours.value    = game.querySelector('#originalHours').value;
     status.checked = game.querySelector('#originalStatus').checked;
-    date.value = game.querySelector('#originalDate').value;
+    date.value     = game.querySelector('#originalDate').value;
 
     title.setAttribute('disabled','');
     platform.setAttribute('disabled','');
@@ -425,9 +425,9 @@ function setCancelButton(id) {
     status.setAttribute('disabled','');
     date.setAttribute('disabled','');
 
-    let editButton = game.querySelector('#editButton');
+    let editButton   = game.querySelector('#editButton');
     let deleteButton = game.querySelector('#deleteButton');
-    let saveButton = game.querySelector('#saveButton');
+    let saveButton   = game.querySelector('#saveButton');
     let cancelButton = game.querySelector('#cancelButton');
 
     editButton.classList.remove('hidden');
